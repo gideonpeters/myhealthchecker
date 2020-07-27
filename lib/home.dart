@@ -1,8 +1,15 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
   final String sensorValue;
-  Home({Key key, this.sensorValue}) : super(key: key);
+  final String oxygenValue;
+  Home({
+    Key key,
+    this.sensorValue,
+    this.oxygenValue,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +48,38 @@ class Home extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 50)),
                     Text(
                       'BPM',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 25),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+            decoration: BoxDecoration(
+              color: Color(0xFF45E4E1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            width: double.infinity,
+            height: 200,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Blood Oxygen'.toUpperCase(),
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                SizedBox(height: 25),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(oxygenValue ?? '0',
+                        style: TextStyle(color: Colors.white, fontSize: 50)),
+                    Text(
+                      '%',
                       style: TextStyle(color: Colors.white),
                     )
                   ],

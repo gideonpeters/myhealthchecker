@@ -32,6 +32,7 @@ dependencies:
   path_provider: ^1.6.5
   share: ^0.6.4+3
   provider: ^3.0.1
+  google_maps_flutter: ^0.5.28+1
 
 dev_dependencies:
   flutter_test:

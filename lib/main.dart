@@ -7,6 +7,7 @@ import 'package:mhc/contact_page.dart';
 import 'package:mhc/core/contact_db.dart';
 import 'package:mhc/core/contact_model.dart';
 import 'package:mhc/home.dart';
+import 'package:mhc/map_page.dart';
 import 'package:mhc/splash_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -177,7 +178,7 @@ class _MainScreenState extends State<MainScreen> {
       body: SingleChildScrollView(
         child: _pageIindex == 0
             ? Home(sensorValue: sensorValue, oxygenValue: oxygenValue)
-            : ContactPage(),
+            : _pageIindex == 1 ? ContactPage() : MapPage(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _pageIindex,
@@ -196,6 +197,12 @@ class _MainScreenState extends State<MainScreen> {
                       ? Theme.of(context).primaryColor
                       : Colors.black),
               title: new Text('')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.location_on,
+                  color: _pageIindex == 2
+                      ? Theme.of(context).primaryColor
+                      : Colors.black),
+              title: new Text('')),
           // BottomNavigationBarItem(
           //     icon: Icon(Icons.bluetooth,
           //         color: _pageIindex == 2
@@ -211,10 +218,13 @@ class _MainScreenState extends State<MainScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
-        onPressed: _pageIindex == 0 ? switchLed : _showMyDialog,
+        onPressed: _pageIindex == 0
+            ? switchLed
+            : _pageIindex == 1 ? _showMyDialog : null,
         tooltip: 'Switch LED',
-        child:
-            _pageIindex == 0 ? Icon(Icons.power_settings_new) : Icon(Icons.add),
+        child: _pageIindex == 0
+            ? Icon(Icons.power_settings_new)
+            : _pageIindex == 1 ? Icon(Icons.add) : null,
       ),
     );
   }
